@@ -7,5 +7,22 @@ pipeline {
       }
     }
 
+    stage('compile') {
+      parallel {
+        stage('compile') {
+          steps {
+            bat 'mvn clean compile'
+          }
+        }
+
+        stage('install') {
+          steps {
+            bat 'mvn install'
+          }
+        }
+
+      }
+    }
+
   }
 }
